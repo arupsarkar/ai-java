@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.ai.services
+web: java -jar target/ai-java-0.0.1-SNAPSHOT.jar
