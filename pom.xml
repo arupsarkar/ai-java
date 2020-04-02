@@ -7,6 +7,7 @@
   <groupId>com.ai.services</groupId>
   <artifactId>ai-java</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <name>ai-java</name>
   <!-- FIXME change it to the project's website -->
@@ -19,12 +20,14 @@
   </properties>
 
   <dependencies>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    
 	<dependency>
 	    <groupId>org.glassfish.jersey.core</groupId>
 	    <artifactId>jersey-client</artifactId>
