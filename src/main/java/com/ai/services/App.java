@@ -3,8 +3,11 @@ package com.ai.services;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
+
+import com.ai.token.AccessToken;
 
 /**
  * Hello world!
@@ -46,6 +49,14 @@ public class App
         if(email != null && privateKey != null) {
         	System.out.println("Email : " + email + ", key : " + privateKey);
         }
+        
+        // Create a AccessToken provider
+        AccessTokenProvider tokenProvider = AccessTokenProvider
+            .getProvider(email, privateKey, durationInSeconds);
+        
+        
+        AccessToken accessToken = tokenProvider.getAccessToken();
+        System.out.println(new Date() + " : Access Token : " + accessToken);
         System.out.println( "AI Services - End" );
     }
 }
