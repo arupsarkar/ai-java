@@ -1,6 +1,7 @@
 package com.ai.services;
 
 import java.io.IOException;
+import java.util.Date;
 
 import com.ai.http.AccessTokenRequest;
 import com.ai.token.AccessToken;
@@ -21,6 +22,9 @@ public class AccessTokenProvider {
 		this.email = email;
 		this.privateKey = privateKey;
 		this.durationInSeconds = durationInSeconds;
+		System.out.println(new Date() + " : email " + email);
+		System.out.println(new Date() + " : privateKey " + privateKey);
+		System.out.println(new Date() + " : durationInSeconds " + String.valueOf(durationInSeconds));
 		refreshToken();
 	}
 
@@ -33,6 +37,7 @@ public class AccessTokenProvider {
 		AccessTokenRequest tokenRequest = new AccessTokenRequest(assertion);
 		try {
 			accessToken = tokenRequest.submit();
+			System.out.println(new Date() + " : " + accessToken);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
