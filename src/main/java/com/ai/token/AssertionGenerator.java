@@ -44,7 +44,8 @@ public class AssertionGenerator {
 		try {
 			System.out.println( new Date() + TAG + " jws " + String.valueOf(jws));
 			return jws.getCompactSerialization();
-		} catch (JoseException e) {
+		} catch (Exception e) {
+			System.out.println(TAG + " : " + e.getLocalizedMessage());
 			return null;
 		}
 	}
