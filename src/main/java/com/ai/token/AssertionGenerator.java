@@ -14,6 +14,7 @@ import java.util.UUID;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
+import org.slf4j.*;
 import org.jose4j.lang.JoseException;
 import sun.security.util.DerInputStream;
 import sun.security.util.DerValue;
