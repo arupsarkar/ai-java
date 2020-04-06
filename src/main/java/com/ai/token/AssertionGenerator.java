@@ -20,6 +20,8 @@ import sun.security.util.DerValue;
 
 
 public class AssertionGenerator {
+	
+	private static String TAG = AssertionGenerator.class.getName();
 
 	public static String generateJWTAssertion(String email, String privateKeyBase64, float expiryInSeconds) {
 		PrivateKey privateKey = getPrivateKey(privateKeyBase64);
@@ -29,7 +31,8 @@ public class AssertionGenerator {
 		claims.setExpirationTimeMinutesInTheFuture(expiryInSeconds / 60);
 		claims.setIssuedAtToNow();
 
-		// Generate the payload
+		System.out.println( new Date() + TAG + " claims " + String.valueOf(claims));
+		
 		final JsonWebSignature jws = new JsonWebSignature();
 		jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
 		jws.setPayload(claims.toJson());
@@ -38,6 +41,7 @@ public class AssertionGenerator {
 		// Sign using the private key
 		jws.setKey(privateKey);
 		try {
+			System.out.println( new Date() + TAG + " jws " + String.valueOf(jws));
 			return jws.getCompactSerialization();
 		} catch (JoseException e) {
 			return null;
