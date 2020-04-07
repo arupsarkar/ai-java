@@ -1,12 +1,17 @@
 package com.ai.services;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import com.ai.database.DatabaseConnection;
 import com.ai.einstein.PredictRequest;
 import com.ai.einstein.PredictResponse;
 import com.ai.token.AccessToken;
@@ -18,6 +23,9 @@ import com.ai.token.AccessTokenRefresher;
  */
 public class App 
 {
+	
+	private static String TAG = App.class.getName();
+	
     public static void main( String[] args )
     {
         System.out.println( "AI Services - Start" );
@@ -73,7 +81,12 @@ public class App
 			try {
 				response = predictRequest.submit();
 				System.out.println(response.getProbabilities());
-			} catch (IOException e) {
+				
+				//connect to the database
+				BasicDataSource connectionPool = DatabaseConnection.createConnectionPool();
+				System.out.println(new Date() + " : " + TAG + " : " + connectionPool.getUsername());
+				
+			} catch (IOException | URISyntaxException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

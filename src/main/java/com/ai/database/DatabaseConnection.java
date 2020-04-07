@@ -3,11 +3,14 @@ package com.ai.database;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.Date;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 
 public class DatabaseConnection {
-
-	public BasicDataSource createConnectionPool() throws URISyntaxException, SQLException {
+	private static String TAG = DatabaseConnection.class.getName();
+	
+	public static BasicDataSource createConnectionPool() throws URISyntaxException, SQLException {
 		
 		BasicDataSource basicDataSource = new BasicDataSource();
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
@@ -28,7 +31,14 @@ public class DatabaseConnection {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		try {
+			BasicDataSource connectionPool = createConnectionPool();
+			System.out.println(new Date() + " : " + TAG + " : " + connectionPool.getUsername());
+		} catch (URISyntaxException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
