@@ -14,7 +14,6 @@ import java.util.UUID;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
-import org.slf4j.*;
 import org.jose4j.lang.JoseException;
 import sun.security.util.DerInputStream;
 import sun.security.util.DerValue;
@@ -44,7 +43,7 @@ public class AssertionGenerator {
 		try {
 			System.out.println( new Date() + TAG + " jws " + String.valueOf(jws));
 			return jws.getCompactSerialization();
-		} catch (Exception e) {
+		} catch (JoseException e) {
 			System.out.println(TAG + " : " + e.getLocalizedMessage());
 			return null;
 		}

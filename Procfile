@@ -1,1 +1,0 @@
-web: java -jar target/ai-java-0.0.1-SNAPSHOT.jar
