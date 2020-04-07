@@ -69,8 +69,15 @@ public class App
                 "GeneralImageClassifier",
                 "https://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Siberian-Husky.jpg");
 
-            PredictResponse response = predictRequest.submit();
-            System.out.println(response.getProbabilities());        
+            PredictResponse response;
+			try {
+				response = predictRequest.submit();
+				System.out.println(response.getProbabilities());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                    
         
         System.out.println( "AI Services - End" );
     }
