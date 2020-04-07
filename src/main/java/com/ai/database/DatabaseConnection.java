@@ -15,9 +15,11 @@ public class DatabaseConnection {
 		BasicDataSource basicDataSource = new BasicDataSource();
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
-		
+		System.out.println(new Date() + " : " + TAG + " : " + dbUrl );
 		
 		  if (dbUri.getUserInfo() != null) {
+			  System.out.println(new Date() + " : " + TAG + " : username " + dbUri.getUserInfo().split(":")[0] );
+			  System.out.println(new Date() + " : " + TAG + " : password " + dbUri.getUserInfo().split(":")[1] );
 			  basicDataSource.setUsername(dbUri.getUserInfo().split(":")[0]);
 			  basicDataSource.setPassword(dbUri.getUserInfo().split(":")[1]);
 		  }
