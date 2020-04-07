@@ -24,6 +24,8 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <commons-codec.version>1.10</commons-codec.version>
+    <dependencyCheck.skip>true</dependencyCheck.skip>
+    <dependencyCheck.failBuildOnCVSS>9</dependencyCheck.failBuildOnCVSS>    
   </properties>
 
   <dependencies>
@@ -79,7 +81,51 @@
 	</dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.ai.services.App</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <configuration>
+          <failBuildOnCVSS>${dependencyCheck.failBuildOnCVSS}</failBuildOnCVSS>
+          <skip>${dependencyCheck.skip}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
+	<!-- 
   <build>
     <pluginManagement>
       <plugins>
@@ -134,7 +180,7 @@
             </plugin>
             
 		    <plugin>
-		      <!-- Build an executable JAR -->
+
 		      <groupId>org.apache.maven.plugins</groupId>
 		      <artifactId>maven-jar-plugin</artifactId>
 		      <version>3.1.0</version>
@@ -154,4 +200,5 @@
       </plugins>
     </pluginManagement>
   </build>
+  -->
 </project>
