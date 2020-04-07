@@ -2,7 +2,10 @@ package com.ai.database;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -36,6 +39,16 @@ public class DatabaseConnection {
 		try {
 			BasicDataSource connectionPool = createConnectionPool();
 			System.out.println(new Date() + " : " + TAG + " : " + connectionPool.getUsername());
+			
+			Connection conn = connectionPool.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, text FROM tbl_tweet");
+			while (rs.next()) {
+			    System.out.println("Read from DB: " + rs.getString("text") + "\n");
+			}			
+			
+			
+			
 		} catch (URISyntaxException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
