@@ -94,7 +94,7 @@ public class App
             
 			try {
 				response = predictRequest.submit();
-				System.out.println(new Date() + " : " + TAG + " : Image Classification : " + response.getProbabilities());
+				System.out.println(new Date() + " : " + TAG + " : Image Classification: " + response.getProbabilities());
 				
 				sentimentResponse = predictSentimentRequest.submit();
 				System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
