@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.ai.token.AccessToken;
+import com.ai.token.AccessTokenRefresher;
 
 /**
  * Hello world!
@@ -54,6 +55,10 @@ public class App
         AccessTokenProvider tokenProvider = AccessTokenProvider
             .getProvider(email, privateKey, durationInSeconds);
         
+        
+        // Use this if you want the refresh the token automatically
+        // Schedule Token refresher to refresh
+        AccessTokenRefresher.schedule(tokenProvider, 60 * 14);        
         
         AccessToken accessToken = tokenProvider.getAccessToken();
         System.out.println(new Date() + " : Access Token : " + accessToken);
