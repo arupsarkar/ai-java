@@ -17,6 +17,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import com.ai.database.DatabaseConnection;
 import com.ai.einstein.PredictRequest;
 import com.ai.einstein.PredictResponse;
+import com.ai.einstein.PredictSentimentResponse;
 import com.ai.token.AccessToken;
 import com.ai.token.AccessTokenRefresher;
 
@@ -84,19 +85,19 @@ public class App
 
             PredictResponse response;
             
-            
+            /*
             PredictRequest predictSentimentRequest = new PredictRequest(token,
                     "CommunitySentiment",
                     "I love your product","LANGUAGE");            
-            
-            PredictResponse sentimentResponse;
+            */
+            PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token);
             
 			try {
 				response = predictRequest.submit();
 				System.out.println(new Date() + " : " + TAG + " : Image Classification: " + response.getProbabilities());
 				
-				sentimentResponse = predictSentimentRequest.submit();
-				System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
+				sentimentResponse = sentimentResponse.submit();
+				//System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
 				
 				//connect to the database
 				BasicDataSource connectionPool = DatabaseConnection.createConnectionPool();
