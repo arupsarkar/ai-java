@@ -145,10 +145,12 @@
 		            <mainClass>com.ai.services.App</mainClass>
 		          </manifest>
 		        </archive>
+		        <!-- 
 	    		<includes>
     				<include>commons-codec:commons-codec</include>
     				<include>org.bitbucket.b_c:jose4j</include>
-    			</includes>	        
+    			</includes>
+    			-->	        
 		      </configuration>
 		    </plugin>
                         
