@@ -84,19 +84,20 @@ public class App
 
             PredictResponse response;
             
+            /*
             PredictRequest predictSentimentRequest = new PredictRequest(token,
                     "CommunitySentiment",
                     "Interesting day - first discussing emergency plans with @OxfordshireCC then connecting with John C @shelleyroo19 @_crmzchan_ to learn about future software solution for @ERSLive @salesforce - great to utilise @Cisco @MicrosoftTeams and #googlehangouts", 
                     "LANGUAGE");            
             
             PredictResponse sentimentResponse;
-            
+            */
 			try {
 				response = predictRequest.submit();
 				System.out.println(new Date() + " : " + TAG + " : Image Classification : " + response.getProbabilities());
 				
-				sentimentResponse = predictSentimentRequest.submit();
-				System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
+				//sentimentResponse = predictSentimentRequest.submit();
+				//System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
 				
 				//connect to the database
 				BasicDataSource connectionPool = DatabaseConnection.createConnectionPool();
