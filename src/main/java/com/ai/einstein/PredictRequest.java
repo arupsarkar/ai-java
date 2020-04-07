@@ -15,12 +15,16 @@ public class PredictRequest extends Request {
 
 	private final String modelId;
 	private final String sampleLocation;
+	private final String detectionMode;
+	private final String FULL_EINSTEIN_VISION_URL = EINSTEIN_VISION_URL + "/v2/vision/predict";
+	private final String FULL_EINSTEIN_LANG_URL = EINSTEIN_VISION_URL + "/v2/language/sentiment";
 
-	public PredictRequest(String token, String modelId, String sampleLocation) {
+	public PredictRequest(String token, String modelId, String sampleLocation, String detectionMode) {
 		super(token);
 		// TODO Auto-generated constructor stub
 	    this.modelId = modelId;
 	    this.sampleLocation = sampleLocation;		
+	    this.detectionMode = detectionMode;
 	}
 	
 	public PredictResponse submit() throws IOException {
@@ -31,8 +35,15 @@ public class PredictRequest extends Request {
 	    MediaType contentType = formPart.getMediaType();
 	    contentType = Boundary.addBoundary(contentType);
 	    Entity<FormDataMultiPart> entity = Entity.entity(formPart, contentType);
-
-	    Response response = client.target(EINSTEIN_VISION_URL + "/v2/vision/predict")
+	    
+	    String EINSTEIN_URL = "";
+	    if(detectionMode.equalsIgnoreCase("VISION")) {
+	    	EINSTEIN_URL = FULL_EINSTEIN_VISION_URL;
+	    }else if(detectionMode.equalsIgnoreCase("LANGUAGE")) {
+	    	EINSTEIN_URL = FULL_EINSTEIN_LANG_URL;
+	    }
+	    
+	    Response response = client.target(EINSTEIN_URL)
 	        .request()
 	        .header("Authorization", "Bearer " + getToken())
 	        .post(entity);

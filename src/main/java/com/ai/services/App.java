@@ -78,7 +78,8 @@ public class App
         
         PredictRequest predictRequest = new PredictRequest(accessToken.getToken(),
                 "GeneralImageClassifier",
-                "https://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Siberian-Husky.jpg");
+                "https://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Siberian-Husky.jpg", 
+                "VISION");
 
             PredictResponse response;
 			try {
