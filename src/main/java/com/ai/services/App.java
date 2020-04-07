@@ -75,15 +75,16 @@ public class App
         
         AccessToken accessToken = tokenProvider.getAccessToken();
         System.out.println(new Date() + " : Access Token : " + accessToken);
+        String token = accessToken.getToken();
         
-        PredictRequest predictRequest = new PredictRequest(accessToken.getToken(),
+        PredictRequest predictRequest = new PredictRequest(token,
                 "GeneralImageClassifier",
                 "https://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Siberian-Husky.jpg", 
                 "VISION");
 
             PredictResponse response;
             
-            PredictRequest predictSentimentRequest = new PredictRequest(accessToken.getToken(),
+            PredictRequest predictSentimentRequest = new PredictRequest(token,
                     "CommunitySentiment",
                     "Interesting day - first discussing emergency plans with @OxfordshireCC then connecting with John C @shelleyroo19 @_crmzchan_ to learn about future software solution for @ERSLive @salesforce - great to utilise @Cisco @MicrosoftTeams and #googlehangouts", 
                     "LANGUAGE");            
