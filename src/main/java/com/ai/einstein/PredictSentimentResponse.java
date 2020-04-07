@@ -14,7 +14,7 @@ public class PredictSentimentResponse extends Request {
 		System.out.println(new Date() + " : " + TAG + " : " + token);
 	}
 	
-	public PredictSentimentResponse submit() throws IOException {
+	public PredictResponse submit() throws IOException {
 		
 		System.out.println(new Date() + " : " + TAG + " : Sentiment analysis - Start");
 		System.out.println(new Date() + " : " + TAG + " : Sentiment analysis - End");

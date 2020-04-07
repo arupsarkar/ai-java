@@ -96,7 +96,7 @@ public class App
 				response = predictRequest.submit();
 				System.out.println(new Date() + " : " + TAG + " : Image Classification: " + response.getProbabilities());
 				
-				sentimentResponse = sentimentResponse.submit();
+				response = sentimentResponse.submit();
 				//System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
 				
 				//connect to the database
