@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.ai.einstein.PredictRequest;
+import com.ai.einstein.PredictResponse;
 import com.ai.token.AccessToken;
 import com.ai.token.AccessTokenRefresher;
 
@@ -62,6 +64,14 @@ public class App
         
         AccessToken accessToken = tokenProvider.getAccessToken();
         System.out.println(new Date() + " : Access Token : " + accessToken);
+        
+        PredictRequest predictRequest = new PredictRequest(accessToken.getToken(),
+                "GeneralImageClassifier",
+                "https://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Siberian-Husky.jpg");
+
+            PredictResponse response = predictRequest.submit();
+            System.out.println(response.getProbabilities());        
+        
         System.out.println( "AI Services - End" );
     }
 }
