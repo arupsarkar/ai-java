@@ -40,15 +40,6 @@ public class DatabaseConnection {
 			BasicDataSource connectionPool = createConnectionPool();
 			System.out.println(new Date() + " : " + TAG + " : " + connectionPool.getUsername());
 			
-			Connection conn = connectionPool.getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text FROM tbl_tweet");
-			while (rs.next()) {
-			    System.out.println("Read from DB: " + rs.getString("text") + "\n");
-			}			
-			
-			
-			
 		} catch (URISyntaxException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

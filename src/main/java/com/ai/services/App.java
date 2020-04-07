@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
@@ -85,7 +88,14 @@ public class App
 				//connect to the database
 				BasicDataSource connectionPool = DatabaseConnection.createConnectionPool();
 				System.out.println(new Date() + " : " + TAG + " : " + connectionPool.getUsername());
-				
+				System.out.println("Read from DB: start "+ "\n");
+				Connection conn = connectionPool.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT id, text FROM tbl_tweet");
+				while (rs.next()) {
+				    System.out.println("Read from DB: " + rs.getString("text") + "\n");
+				}
+				System.out.println("Read from DB: end "+ "\n");
 			} catch (IOException | URISyntaxException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
