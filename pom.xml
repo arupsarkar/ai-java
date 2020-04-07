@@ -146,19 +146,11 @@
 		            <mainClass>com.ai.services.App</mainClass>
 		          </manifest>
 		        </archive>
-		      </configuration>
-		    </plugin>
-		    
-		    <plugin>
-		    	<groupId>commons-codec</groupId>
-	    		<artifactId>commons-codec</artifactId>
-	    		 <version>${commons-codec.version}</version>
-	    		 <configuration>
-	    		 	<includes>
+		    	<includes>
 	    		 		<include>commons-codec:commons-codec</include>
-	    		 	</includes>
-	    		 </configuration>	    
-		    </plugin>
+	    		</includes>	        
+		      </configuration>
+		    </plugin>		    
       </plugins>
     </pluginManagement>
   </build>
