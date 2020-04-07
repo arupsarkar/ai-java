@@ -81,6 +81,7 @@ public class AssertionGenerator {
 	          primeP, primeQ, expP, expQ, crtCoeff);
 
 	      KeyFactory factory = KeyFactory.getInstance("RSA");
+	      System.out.println( new Date() + TAG + " jws " + String.valueOf(factory));
 	      return factory.generatePrivate(keySpec);
 	    } catch (IOException | GeneralSecurityException e) {
 	    	System.out.println(new Date() + " : " + e.getLocalizedMessage());

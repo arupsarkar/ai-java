@@ -8,7 +8,7 @@ import com.ai.token.AccessToken;
 import com.ai.token.AssertionGenerator;
 
 public class AccessTokenProvider {
-
+	private static String TAG = AccessTokenProvider.class.getName();
 	private AccessToken accessToken;
 	private final String email;
 	private final String privateKey;
@@ -34,6 +34,8 @@ public class AccessTokenProvider {
 
 	public void refreshToken() {
 		String assertion = AssertionGenerator.generateJWTAssertion(email, privateKey, durationInSeconds);
+		System.out.println(new Date() + ":" + TAG + ":" + assertion);
+		
 		AccessTokenRequest tokenRequest = new AccessTokenRequest(assertion);
 		try {
 			accessToken = tokenRequest.submit();
