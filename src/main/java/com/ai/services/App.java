@@ -85,14 +85,9 @@ public class App
 
             PredictResponse response;
             
-            /*
-            PredictRequest predictSentimentRequest = new PredictRequest(token,
-                    "CommunitySentiment",
-                    "I love your product","LANGUAGE");            
-            */
             PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token,
                     "CommunitySentiment",
-                    "I do not like your product");
+                    "This is a terrible product");
             
 			try {
 				response = predictRequest.submit();
