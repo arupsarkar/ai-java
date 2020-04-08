@@ -27,13 +27,10 @@ public class PredictSentimentResponse extends Request {
 		this.token = token;
 		this.modelId = modelId;
 		this.document = document;
-		
-		System.out.println(new Date() + " : " + TAG + " : " + token);
 	}
 	
 	public PredictResponse submit() throws IOException {
 		
-		System.out.println(new Date() + " : " + TAG + " : Sentiment analysis - Start");
 	    FormDataMultiPart formPart = new FormDataMultiPart();
 	    formPart.field("modelId", modelId);
 	    formPart.field("document", document);
@@ -50,8 +47,6 @@ public class PredictSentimentResponse extends Request {
 	    if (!isSuccessful(response)) {
 		      throw new IOException("Error occurred while making prediction call " + response);
 		    }		
-		
-	    System.out.println(new Date() + " : " + TAG + " : Sentiment analysis - End " + response.getStatus());			
 		
 		return readResponseAs(response, PredictResponse.class);
 		
