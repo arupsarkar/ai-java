@@ -85,9 +85,7 @@ public class App
 
             PredictResponse response;
             
-            PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token,
-                    "CommunitySentiment",
-                    "This is a terrible product");
+
             
 			try {
 				response = predictRequest.submit();
@@ -104,7 +102,15 @@ public class App
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT id, text FROM tbl_tweet");
 				while (rs.next()) {
-				    System.out.println("Read from DB: " + rs.getString("text") + "\n");
+					String text = rs.getString("text");
+				    System.out.println("Read from DB: " + text + "\n");
+				    
+		            PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token,
+		                    "CommunitySentiment",
+		                    text);	
+		            
+					response = sentimentResponse.submit();
+					System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());				    
 				}
 				System.out.println("Read from DB: end "+ "\n");
 			} catch (IOException | URISyntaxException | SQLException e) {
