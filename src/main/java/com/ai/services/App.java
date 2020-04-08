@@ -90,14 +90,16 @@ public class App
                     "CommunitySentiment",
                     "I love your product","LANGUAGE");            
             */
-            PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token);
+            PredictSentimentResponse sentimentResponse = new PredictSentimentResponse(token,
+                    "CommunitySentiment",
+                    "I do not like your product");
             
 			try {
 				response = predictRequest.submit();
 				System.out.println(new Date() + " : " + TAG + " : Image Classification: " + response.getProbabilities());
 				
 				response = sentimentResponse.submit();
-				//System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
+				System.out.println(new Date() + " : " + TAG + " : Sentiment :  " + response.getProbabilities());
 				
 				//connect to the database
 				BasicDataSource connectionPool = DatabaseConnection.createConnectionPool();
